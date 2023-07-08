@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Travel;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Tour extends Model
 {
@@ -15,6 +16,7 @@ class Tour extends Model
         'name',
         'starting_date',
         'ending_date',
+        'price',
     ];
 
     /**
@@ -28,7 +30,9 @@ class Tour extends Model
     }
 
     /**
-     * 
+     * Price accessor and mutator
+     * Multiply by 100 when saving
+     * Divide by 100 when acessing
      */
     public function price(): Attribute
     {

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Tour;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 
 class Travel extends Model
@@ -53,10 +54,15 @@ class Travel extends Model
         return $this->hasMany(Tour::class, 'foreign_key', 'local_key');
     }
     
-    public function numberOfNights(): Attribute
+    /**
+     * Accessor for creating virtual column of number of nights
+     */
+    protected function numberOfNights(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attributes) => $attributes["number_of_days"] - 1
+            get: fn () => $this->number_of_days - 1
         );
     }    
+    
+    
 }
