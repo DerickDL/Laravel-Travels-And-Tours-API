@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Tour;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 class Travel extends Model
@@ -51,7 +52,7 @@ class Travel extends Model
      */
     public function tours(): HasMany
     {
-        return $this->hasMany(Tour::class, 'foreign_key', 'local_key');
+        return $this->hasMany(Tour::class);
     }
     
     /**
