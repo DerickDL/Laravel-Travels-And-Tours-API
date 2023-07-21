@@ -28,6 +28,7 @@ Route::get('travel/{travel:slug}/tours', [TourController::class, 'index']);
 
 Route::prefix('admin')->middleware(['auth:sanctum', 'role:admin'])->group(function() {
     Route::post('travels', [Admin\TravelController::class, 'store']);
+    Route::post('travel/{travel}/tours', [Admin\TourController::class, 'store']);
 });
 
 Route::post('login', LoginController::class);
